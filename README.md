@@ -6,65 +6,104 @@ O TrustCode Escrow Freelancer é uma solução baseada em blockchain que utiliza
 
 O projeto funciona como um sistema de escrow (conta de garantia), onde os fundos permanecem bloqueados em um contrato inteligente até que o serviço seja entregue e aprovado pelo cliente.
 
-O objetivo é reduzir a dependência de confiança informal, diminuir riscos de inadimplência e aumentar a transparência nas relações comerciais.
+O objetivo é reduzir a dependência de confiança informal, minimizar riscos de inadimplência e aumentar a transparência nas relações comerciais.
 
 ---
 
 ## Problema
 
+O mercado de prestação de serviços digitais cresce continuamente, mas ainda enfrenta problemas relacionados à confiança entre contratantes e prestadores de serviço.
+
 Freelancers frequentemente enfrentam:
 
-* Atrasos em pagamentos;
+* Atrasos nos pagamentos;
 * Inadimplência;
 * Falta de garantias contratuais;
+* Dificuldade para comprovar acordos;
 * Dependência de confiança informal.
 
-Clientes também enfrentam dificuldades:
+Clientes também enfrentam desafios importantes:
 
-* Receio de pagar antecipadamente;
+* Receio de realizar pagamentos antecipados;
 * Falta de garantias sobre a entrega do serviço;
-* Dependência de intermediários para mediação.
+* Necessidade de intermediários para validação e mediação.
 
-Esse cenário gera conflitos, custos operacionais e reduz a confiança entre as partes.
+Esse cenário gera conflitos, custos operacionais e reduz a eficiência das relações comerciais.
 
 ---
 
 ## Solução
 
-O TrustCode Escrow Freelancer utiliza um Smart Contract para automatizar o fluxo de pagamento.
+O TrustCode Escrow Freelancer utiliza Smart Contracts para automatizar acordos de prestação de serviços.
 
-### Fluxo
+O contrato inteligente atua como uma camada de confiança programável entre cliente e freelancer, garantindo que os recursos financeiros sejam liberados apenas quando as condições previamente definidas forem cumpridas.
 
-1. Cliente cria o acordo.
-2. Cliente deposita ETH no contrato.
-3. Os fundos permanecem bloqueados.
-4. Freelancer realiza o serviço.
-5. Cliente aprova a entrega.
-6. O pagamento é liberado automaticamente.
+Todo o fluxo fica registrado na blockchain, proporcionando transparência, rastreabilidade e auditabilidade.
 
-Todas as etapas ficam registradas na blockchain.
+---
+
+## Objetivo do Projeto
+
+Demonstrar como Smart Contracts podem automatizar acordos de prestação de serviços, reduzindo a necessidade de intermediários e aumentando a segurança das transações.
+
+O projeto busca validar um fluxo completo de pagamento utilizando blockchain Ethereum em ambiente de testes.
+
+---
+
+## Fluxo da Aplicação
+
+### Etapa 1 – Criação do Acordo
+
+O cliente cria um acordo informando:
+
+* Endereço da carteira do freelancer;
+* Descrição do serviço;
+* Valor acordado.
+
+O Smart Contract registra essas informações na blockchain.
+
+### Etapa 2 – Depósito dos Fundos
+
+O cliente deposita o valor acordado em ETH.
+
+Os fundos permanecem bloqueados no contrato inteligente.
+
+### Etapa 3 – Execução do Serviço
+
+O freelancer realiza o trabalho contratado.
+
+### Etapa 4 – Aprovação da Entrega
+
+Após verificar a entrega, o cliente aprova o serviço.
+
+### Etapa 5 – Liberação Automática do Pagamento
+
+O Smart Contract transfere automaticamente os fundos para o freelancer.
+
+A transação é registrada na blockchain.
 
 ---
 
 ## MVP Implementado
 
-### Funcionalidades
+### Funcionalidades Principais
 
 * Criação de acordo entre cliente e freelancer;
+* Registro da descrição do serviço;
 * Registro do valor contratado;
 * Depósito de fundos em ETH;
-* Aprovação da entrega;
+* Aprovação da entrega pelo cliente;
 * Liberação automática do pagamento;
-* Eventos on-chain para auditoria.
+* Registro de eventos on-chain para auditoria.
 
-### Fora do Escopo
+### Funcionalidades Fora do Escopo
 
-* Login de usuários;
+* Sistema de login;
 * Banco de dados;
 * Sistema de disputas;
 * Marketplace completo;
 * Dashboard administrativo;
-* Deploy em produção.
+* Deploy em ambiente de produção.
 
 ---
 
@@ -101,28 +140,45 @@ trustcode-escrow-freelancer
 
 ---
 
-## Arquitetura
+## Arquitetura da Solução
 
 ### Smart Contract
 
-Responsável por:
+O Smart Contract é o componente principal da solução e é responsável por:
 
-* Registrar o acordo;
-* Receber os depósitos;
-* Controlar o status do serviço;
-* Liberar pagamentos automaticamente.
+* Registrar o acordo entre cliente e freelancer;
+* Armazenar a descrição do serviço e o valor contratado;
+* Receber e bloquear os fundos depositados pelo cliente;
+* Controlar o status do contrato;
+* Registrar eventos para auditoria na blockchain;
+* Liberar automaticamente o pagamento após a aprovação do serviço.
 
 ### Blockchain
 
+A blockchain é responsável por garantir a execução segura e transparente das regras definidas no contrato.
+
+Benefícios:
+
+* Transparência das transações;
+* Imutabilidade dos registros;
+* Rastreabilidade das operações;
+* Auditoria pública das transações;
+* Execução automática das regras de negócio.
+
 Rede utilizada:
 
-* Ethereum Sepolia Testnet
+* Ethereum
+* Sepolia Testnet
 
-### Carteira
+### Carteira Digital
 
-Utilizada para interação:
+A MetaMask é utilizada para:
 
-* MetaMask
+* Assinar transações;
+* Interagir com o Smart Contract;
+* Depositar fundos;
+* Aprovar entregas;
+* Receber pagamentos.
 
 ---
 
@@ -130,32 +186,32 @@ Utilizada para interação:
 
 ### Principais Funções
 
-### createAgreement()
+#### createAgreement()
 
-Registra:
+Responsável por registrar:
 
 * Contratante;
 * Freelancer;
 * Descrição do serviço;
 * Valor acordado.
 
-### depositFunds()
+#### depositFunds()
 
 Permite ao cliente depositar ETH no contrato.
 
-### approveWork()
+#### approveWork()
 
-Permite ao cliente aprovar a entrega do serviço.
+Permite ao cliente aprovar a conclusão do serviço.
 
-### releasePayment()
+#### releasePayment()
 
-Libera automaticamente os fundos para o freelancer.
+Libera automaticamente os fundos para o freelancer após a aprovação.
 
 ---
 
 ## Eventos On-Chain
 
-O contrato registra eventos importantes para auditoria:
+O contrato registra eventos importantes para auditoria e rastreabilidade:
 
 * AgreementCreated
 * FundsDeposited
@@ -164,39 +220,98 @@ O contrato registra eventos importantes para auditoria:
 
 ---
 
+## Fluxo Operacional
+
+```text
+Cliente
+│
+├── Cria o acordo
+│
+├── Deposita ETH
+│
+▼
+Smart Contract
+│
+├── Registra informações
+├── Bloqueia os fundos
+├── Controla o status do contrato
+│
+▼
+Freelancer
+│
+├── Executa o serviço
+│
+▼
+Cliente
+│
+├── Aprova a entrega
+│
+▼
+Smart Contract
+│
+└── Libera o pagamento automaticamente
+│
+▼
+Freelancer recebe os fundos
+```
+
+---
+
+## Segurança
+
+O contrato implementa controles básicos para garantir a integridade do processo:
+
+* Apenas o cliente pode aprovar a entrega;
+* O pagamento só pode ser liberado após aprovação;
+* Os fundos permanecem bloqueados até o cumprimento das condições;
+* Eventos on-chain permitem auditoria das operações;
+* Todas as transações ficam registradas na blockchain Ethereum.
+
+---
+
+## Privacidade
+
+O projeto não armazena dados pessoais dos usuários.
+
+As interações são realizadas exclusivamente por meio de endereços públicos de carteiras Ethereum.
+
+Nenhuma informação como nome, CPF, telefone, endereço ou e-mail é armazenada pelo Smart Contract.
+
+---
+
 ## Como Executar
 
-### Clonar o projeto
+### Clonar o Repositório
 
 ```bash
 git clone https://github.com/seu-usuario/trustcode-escrow-freelancer.git
 ```
 
-### Entrar na pasta
+### Acessar o Projeto
 
 ```bash
 cd trustcode-escrow-freelancer
 ```
 
-### Instalar dependências
+### Instalar Dependências
 
 ```bash
 npm install
 ```
 
-### Compilar contrato
+### Compilar o Contrato
 
 ```bash
 npx hardhat compile
 ```
 
-### Executar testes
+### Executar Testes
 
 ```bash
 npx hardhat test
 ```
 
-### Fazer deploy na Sepolia
+### Realizar Deploy na Sepolia
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia
@@ -206,25 +321,25 @@ npx hardhat run scripts/deploy.js --network sepolia
 
 ## Critérios de Sucesso
 
-O projeto é considerado funcional quando for possível:
+O projeto será considerado funcional quando for possível:
 
-* Criar um acordo;
-* Depositar ETH de teste;
-* Aprovar a entrega;
-* Liberar automaticamente o pagamento;
-* Verificar as transações na Sepolia Testnet.
+1. Criar um acordo de prestação de serviço;
+2. Depositar ETH de teste;
+3. Aprovar a entrega do serviço;
+4. Liberar automaticamente o pagamento;
+5. Verificar as transações na Sepolia Testnet.
 
 ---
 
 ## Aplicação Real
 
-A solução pode ser utilizada em:
+A solução pode ser aplicada em:
 
 * Plataformas de freelancers;
 * Marketplaces de serviços;
 * Agências digitais;
-* Contratos corporativos;
 * Consultorias;
+* Contratos corporativos;
 * Prestação de serviços remotos.
 
 ---
@@ -234,9 +349,10 @@ A solução pode ser utilizada em:
 * Problema real de mercado;
 * Fluxo financeiro completo;
 * Uso efetivo de blockchain;
-* Transparência através de registros imutáveis;
 * Smart Contract como elemento central da solução;
-* Auditoria por eventos on-chain.
+* Transparência por meio de registros imutáveis;
+* Auditoria através de eventos on-chain;
+* Facilidade de expansão para marketplaces e plataformas de serviços.
 
 ---
 
@@ -250,4 +366,4 @@ Projeto desenvolvido para o desafio TrustCode do HackWeb Web3.
 
 ## Licença
 
-MIT License
+Este projeto está licenciado sob a licença MIT.
